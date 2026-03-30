@@ -1,0 +1,355 @@
+<% layout("./layouts/boilerplate") %>
+
+<style>
+#filters-main-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+#filters-container {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+#filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.75rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0 0.5rem 0;
+  scrollbar-width: none;
+}
+
+#filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.filter {
+  text-align: center;
+  opacity: 0.7;
+  min-width: 50px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.filter:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.filter p {
+  font-size: 0.75rem;
+  margin-bottom: 0;
+}
+
+.filter-scroll-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid #cfcfcf;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  transition: all 0.2s ease;
+}
+
+.filter-scroll-btn:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transform: scale(1.03);
+}
+
+.filter-scroll-btn.hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tax-info {
+  display: none;
+}
+
+.tax-toggle {
+  border: 1px solid #222;
+  border-radius: 1rem;
+  min-height: 3.3rem;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.listing-location {
+  color: #767878;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+
+.category{
+    border: 0.1px solid rgb(225, 224, 224);
+  }
+
+@media (max-width: 992px) {
+  #filters-main-wrapper {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  #filters-container {
+    order: 1;
+    width: calc(100% - 5.5rem);
+  }
+
+  .filter-scroll-btn.left {
+    order: 0;
+    margin-top: 2rem;
+  }
+
+  .filter-scroll-btn.right {
+    order: 2;
+    margin-top: 2rem;
+  }
+
+  .tax-toggle {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 576px) {
+  #filters {
+    gap: 1.2rem;
+  }
+
+  .filter {
+    min-width: 60px;
+  }
+
+  .filter p {
+    font-size: 0.75rem;
+  }
+
+  .filter-scroll-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 2rem;
+  }
+}
+</style>
+
+<div id="filters-main-wrapper">
+  <button class="filter-scroll-btn left" id="scroll-left" type="button">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div id="filters-container">
+    <div id="filters">
+      <a href="/listings/filter/Trending" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-fire"></i></div>
+          <p>Trending</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Rooms" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-bed"></i></div>
+          <p>Rooms</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Iconic%20Cities" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Iconic Cities</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Hill%20Stations" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-mountain"></i></div>
+          <p>Hill Stations</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Castles" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-brands fa-fort-awesome"></i></div>
+          <p>Castles</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Amazing%20Pools" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-person-swimming"></i></div>
+          <p>Amazing Pools</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Camping" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-tent"></i></div>
+          <p>Camping</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Farms" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-seedling"></i></div>
+          <p>Farms</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Architect" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-landmark-dome"></i></div>
+          <p>Architect</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Domes" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-igloo"></i></div>
+          <p>Domes</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Islands" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-earth-oceania"></i></div>
+          <p>Islands</p>
+        </div>
+      </a>
+
+      <a href="/listings/filter/Boats" class="filter-link">
+        <div class="filter">
+          <div><i class="fa-solid fa-sailboat"></i></div>
+          <p>Boats</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <button class="filter-scroll-btn right" id="scroll-right" type="button">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <div class="tax-toggle">
+    <div class="form-check form-switch d-flex align-items-center m-0">
+      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+      <label class="form-check-label ms-2" for="switchCheckDefault">
+        Total Price Including Taxes
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3">
+  <% for(let listing of allListings){ %>
+    <div class="col">
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card listing-card h-100">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem">
+          <div class="card-img-overlay"></div>
+
+          <div class="card-body">
+            <p class="card-text">
+              <div><b><%= listing.title %></b></div>
+
+              <div class="listing-location">
+                <%= listing.location %>, <%= listing.country %>
+              </div>
+
+              <div class="mb-1">
+                <% if(listing.categories && listing.categories.length > 0){ %>
+                  <% listing.categories.forEach(category => { %>
+                    <span class="badge category text-bg-light me-1 mb-1"><%= category %></span>
+                  <% }) %>
+                <% } %>
+              </div>
+
+              <span class="base-price">
+                &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+              </span>
+
+              <span class="tax-info">
+                &#8377; <%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> / night (incl. 18% GST)
+              </span>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<script>
+  const filters = document.getElementById("filters");
+  const leftBtn = document.getElementById("scroll-left");
+  const rightBtn = document.getElementById("scroll-right");
+  const taxSwitch = document.getElementById("switchCheckDefault");
+
+  function updateScrollButtons() {
+    const maxScrollLeft = filters.scrollWidth - filters.clientWidth;
+
+    if (filters.scrollLeft <= 5) {
+      leftBtn.classList.add("hidden");
+    } else {
+      leftBtn.classList.remove("hidden");
+    }
+
+    if (filters.scrollLeft >= maxScrollLeft - 5) {
+      rightBtn.classList.add("hidden");
+    } else {
+      rightBtn.classList.remove("hidden");
+    }
+  }
+
+  rightBtn.addEventListener("click", () => {
+    filters.scrollBy({ left: 300, behavior: "smooth" });
+  });
+
+  leftBtn.addEventListener("click", () => {
+    filters.scrollBy({ left: -300, behavior: "smooth" });
+  });
+
+  filters.addEventListener("scroll", updateScrollButtons);
+  window.addEventListener("load", updateScrollButtons);
+  window.addEventListener("resize", updateScrollButtons);
+
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    let basePrice = document.getElementsByClassName("base-price");
+
+    for (let info of taxInfo) {
+      if (info.style.display !== "inline") {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
+      }
+    }
+
+    for (let price of basePrice) {
+      if (price.style.display !== "none") {
+        price.style.display = "none";
+      } else {
+        price.style.display = "inline";
+      }
+    }
+  });
+</script>
